@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// Db
 var mongoose = require('mongoose');
-
+// congif
+var config = require('./config/globals');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var contactRouter = require('./routes/contact');
@@ -26,7 +28,7 @@ app.use('/users', usersRouter);
 app.use('/contact', contactRouter);
 
 
-const connString = 'mongodb+srv://tusharaakoliya:wl4P16RTec2UfiiV@cluster0.zd1mb.mongodb.net/test';
+const connString = config.db;
 mongoose.connect(connString, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((message)=>console.log('connected'))
 .catch((error)=>console.log(error));
