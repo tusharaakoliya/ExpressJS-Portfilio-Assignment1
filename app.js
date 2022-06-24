@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var contactRouter = require('./routes/contact');
 
 var app = express();
 
@@ -21,6 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/contact', contactRouter);
+
+
+const connString = 'mongodb+srv://tusharaakoliya:wl4P16RTec2UfiiV@cluster0.zd1mb.mongodb.net/test';
+mongoose.connect(connString, {useNewUrlParser: true, useUnifiedTopology: true})
+.then((message)=>console.log('connected'))
+.catch((error)=>console.log(error));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
