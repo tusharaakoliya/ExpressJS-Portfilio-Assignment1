@@ -8,8 +8,6 @@ var mongoose = require('mongoose');
 // congif
 var config = require('./config/globals');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var contactRouter = require('./routes/contact');
 
 var app = express();
 
@@ -24,8 +22,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/contact', contactRouter);
+app.use('/contact', indexRouter);
+app.use('/add', indexRouter);
 
 
 const connString = config.db;

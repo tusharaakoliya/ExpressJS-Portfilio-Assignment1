@@ -21,3 +21,4 @@ const schemaDefination = {
 
 const contactSchema = new mongoose.Schema(schemaDefination);
 module.exports = mongoose.model('Contact', contactSchema);
+ 
